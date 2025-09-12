@@ -1,43 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <!-- 1) Make mobile browsers render properly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Metaflux Technologies</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f8f8f8;
-      margin: 0;
+    :root{
+      --brand1:#7d00ff;
+      --brand2:#00ffb9;
+      --text:#222;
+      --bg:#f8f8f8;
     }
-    header {
-      background: linear-gradient(90deg, #7d00ff, #00ffb9);
-      color: white;
-      padding: 50px 20px;
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);}
+
+    /* HERO with background image */
+    .hero{
+      position:relative;
+      min-height: 55vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:60px 20px;
+      background: url("img/hero-led-wall.jpg") center/cover no-repeat; /* <-- put your image */
     }
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
+    .hero::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(135deg, rgba(125,0,255,.55), rgba(0,255,185,.45));
     }
-    main { padding: 30px; }
-    footer {
-      background: #222;
-      color: white;
-      padding: 20px;
-      margin-top: 50px;
+    .hero-inner{
+      position:relative; z-index:1; color:#fff; max-width:900px;
+    }
+    .hero h1{margin:0 0 10px;font-size:42px;letter-spacing:.5px}
+    .hero p{margin:0 0 20px;font-size:18px;opacity:.95}
+    .btn{
+      display:inline-block; text-decoration:none; font-weight:bold;
+      padding:12px 20px; border-radius:6px; background:#fff; color:var(--brand1);
+    }
+
+    /* NAV */
+    .nav{
+      display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+      padding:14px 20px; background:#fff; position:sticky; top:0; z-index:5;
+      border-bottom:1px solid #eee;
+    }
+    .nav a{color:#333; text-decoration:none; font-weight:bold; padding:8px 10px}
+    .nav a:hover{background:#f1f1f1; border-radius:4px}
+
+    /* CONTENT */
+    .wrap{max-width:1100px;margin:30px auto;padding:0 20px}
+    .lead{font-size:20px; line-height:1.6}
+
+    /* “Floating image” beside text (stacks on mobile) */
+    .feature{
+      display:flex; gap:24px; align-items:center; margin:30px 0;
+    }
+    .feature img{
+      width:360px; max-width:45%; height:auto; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    .feature .text{flex:1; min-width:260px}
+
+    /* FOOTER */
+    footer{background:#222;color:#fff;text-align:center;padding:24px;margin-top:60px}
+
+    /* 2) Responsive rules */
+    @media (max-width: 768px){
+      .hero{min-height: 48vh; padding:50px 16px}
+      .hero h1{font-size:30px}
+      .hero p{font-size:16px}
+      .feature{flex-direction:column}
+      .feature img{max-width:100%}
+    }
+
+    /* 3) Floating CTA button (fixed) */
+    .fab{
+      position:fixed; right:16px; bottom:16px; z-index:10;
+      background:linear-gradient(90deg, var(--brand1), var(--brand2));
+      color:#fff; padding:14px 18px; border-radius:999px; text-decoration:none; font-weight:bold;
+      box-shadow:0 10px 24px rgba(0,0,0,.18);
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Metaflux Technologies</h1>
-    <p>Fluxing Ideas into Reality</p>
-    <a href="contact.html" style="background:white;color:#7d00ff;padding:10px 20px;border-radius:5px;text-decoration:none;">Get in Touch</a>
+
+  <!-- HERO with background image + overlay -->
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Metaflux Technologies</h1>
+      <p>Fluxing Ideas into Reality — LED Walls • Projection Mapping • Interactive</p>
+      <a class="btn" href="contact.html">Get in Touch</a>
+    </div>
   </header>
 
-  <nav>
+  <!-- Simple responsive nav -->
+  <nav class="nav">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
@@ -45,13 +104,32 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <main>
-    <h2>Welcome to Metaflux</h2>
-    <p>We provide LED walls, projection mapping, and interactive event technology in Dubai.</p>
+  <!-- CONTENT -->
+  <main class="wrap">
+    <p class="lead">
+      We build immersive event experiences across the UAE with high-resolution LED, mapped projection, and interactive tech.
+    </p>
+
+    <!-- “Floating image” side-by-side that stacks on mobile -->
+    <section class="feature">
+      <img src="img/interactive-screen.jpg" alt="Interactive screen demo">
+      <div class="text">
+        <h2>Interactive That Engages</h2>
+        <p>
+          From touch walls to AI photobooths, our activations turn audiences into participants.
+          Lightweight front-end and robust onsite support ensure glitch-free shows.
+        </p>
+        <a class="btn" href="portfolio.html">See Our Work</a>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>© Metaflux Technologies, 2025–present. All rights reserved.</p>
+    © Metaflux Technologies, 2025–present. All rights reserved.
   </footer>
+
+  <!-- Floating CTA button (always visible) -->
+  <a class="fab" href="mailto:hello@company.ae">Request a Quote</a>
+
 </body>
 </html>
