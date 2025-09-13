@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- 1) Make mobile browsers render properly -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Metaflux Technologies</title>
   <style>
@@ -14,17 +13,17 @@
     }
     *{box-sizing:border-box}
     body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);}
-
-    /* HERO with background image */
+    
+    /* HERO with centered logo + background (optional) */
     .hero{
       position:relative;
-      min-height: 55vh;
+      min-height: 48vh;
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding:60px 20px;
-      background: url("img/hero-led-wall.jpg") center/cover no-repeat; /* <-- put your image */
+      padding:50px 20px 30px;
+      background: url("img/hero-led-wall.jpg") center/cover no-repeat; /* <-- replace or remove */
     }
     .hero::after{
       content:"";
@@ -33,69 +32,88 @@
     }
     .hero-inner{
       position:relative; z-index:1; color:#fff; max-width:900px;
+      display:flex; flex-direction:column; align-items:center; gap:10px;
     }
-    .hero h1{margin:0 0 10px;font-size:42px;letter-spacing:.5px}
-    .hero p{margin:0 0 20px;font-size:18px;opacity:.95}
-    .btn{
-      display:inline-block; text-decoration:none; font-weight:bold;
-      padding:12px 20px; border-radius:6px; background:#fff; color:var(--brand1);
+    .logo{
+      width:120px; height:auto; display:block; border-radius:12px;
+      box-shadow:0 10px 24px rgba(0,0,0,.15);
     }
+    .hero h1{margin:8px 0 4px;font-size:38px;letter-spacing:.3px}
+    .hero p{margin:0;font-size:16px;opacity:.95}
 
     /* NAV */
     .nav{
-      display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
-      padding:14px 20px; background:#fff; position:sticky; top:0; z-index:5;
+      display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+      padding:12px 16px; background:#fff; position:sticky; top:0; z-index:5;
       border-bottom:1px solid #eee;
     }
     .nav a{color:#333; text-decoration:none; font-weight:bold; padding:8px 10px}
     .nav a:hover{background:#f1f1f1; border-radius:4px}
 
-    /* CONTENT */
-    .wrap{max-width:1100px;margin:30px auto;padding:0 20px}
-    .lead{font-size:20px; line-height:1.6}
+    /* WRAPPER */
+    .wrap{max-width:1200px;margin:20px auto 50px;padding:0 16px}
 
-    /* “Floating image” beside text (stacks on mobile) */
-    .feature{
-      display:flex; gap:24px; align-items:center; margin:30px 0;
+    /* HORIZONTAL SCROLL GALLERY */
+    .hscroll{
+      display:flex; gap:16px; overflow-x:auto; padding:8px 4px 16px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
-    .feature img{
-      width:360px; max-width:45%; height:auto; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.08);
+    .card{
+      position:relative; flex:0 0 auto; width:300px; height:200px;
+      border-radius:12px; overflow:hidden; scroll-snap-align:start;
+      box-shadow:0 10px 24px rgba(0,0,0,.10); background:#ddd;
     }
-    .feature .text{flex:1; min-width:260px}
+    .card img{
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+    .badge{
+      position:absolute; left:10px; bottom:10px; 
+      background:rgba(0,0,0,.55); color:#fff; 
+      padding:6px 10px; border-radius:8px; font-size:14px; font-weight:bold;
+      backdrop-filter: blur(2px);
+    }
+
+    /* SECTION TITLES */
+    .section-title{
+      font-size:22px; margin:10px 0 12px; text-align:left;
+    }
 
     /* FOOTER */
-    footer{background:#222;color:#fff;text-align:center;padding:24px;margin-top:60px}
+    footer{background:#222;color:#fff;text-align:center;padding:24px;margin-top:40px}
 
-    /* 2) Responsive rules */
-    @media (max-width: 768px){
-      .hero{min-height: 48vh; padding:50px 16px}
-      .hero h1{font-size:30px}
-      .hero p{font-size:16px}
-      .feature{flex-direction:column}
-      .feature img{max-width:100%}
-    }
-
-    /* 3) Floating CTA button (fixed) */
+    /* Floating Request a Quote (single CTA) */
     .fab{
       position:fixed; right:16px; bottom:16px; z-index:10;
       background:linear-gradient(90deg, var(--brand1), var(--brand2));
       color:#fff; padding:14px 18px; border-radius:999px; text-decoration:none; font-weight:bold;
       box-shadow:0 10px 24px rgba(0,0,0,.18);
     }
+
+    /* Responsive tweaks */
+    @media (max-width: 768px){
+      .hero{min-height:44vh;padding:40px 14px 24px}
+      .hero h1{font-size:28px}
+      .logo{width:96px}
+      .card{width:260px; height:170px}
+    }
   </style>
 </head>
 <body>
 
-  <!-- HERO with background image + overlay -->
+  <!-- HERO: centered logo + company name + tagline only -->
   <header class="hero">
     <div class="hero-inner">
+      <!-- 2) Add your logo here -->
+      <img class="logo" src="img/logo.png" alt="Metaflux logo"><!-- replace with your file -->
       <h1>Metaflux Technologies</h1>
-      <p>Fluxing Ideas into Reality — LED Walls • Projection Mapping • Interactive</p>
-      <a class="btn" href="contact.html">Get in Touch</a>
+      <!-- 4) Only tagline under company name -->
+      <p>Fluxing Ideas into Reality</p>
+      <!-- (Removed the 'Get in Touch' button as requested) -->
     </div>
   </header>
 
-  <!-- Simple responsive nav -->
+  <!-- NAV: keep all buttons/links as is -->
   <nav class="nav">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -104,32 +122,44 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- CONTENT -->
   <main class="wrap">
-    <p class="lead">
-      We build immersive event experiences across the UAE with high-resolution LED, mapped projection, and interactive tech.
-    </p>
-
-    <!-- “Floating image” side-by-side that stacks on mobile -->
-    <section class="feature">
-      <img src="img/interactive-screen.jpg" alt="Interactive screen demo">
-      <div class="text">
-        <h2>Interactive That Engages</h2>
-        <p>
-          From touch walls to AI photobooths, our activations turn audiences into participants.
-          Lightweight front-end and robust onsite support ensure glitch-free shows.
-        </p>
-        <a class="btn" href="portfolio.html">See Our Work</a>
+    <!-- 5) Horizontal scrollable project/product gallery -->
+    <h2 class="section-title">Projects & Products</h2>
+    <div class="hscroll">
+      <!-- Sample cards — replace images and names; you can add/remove cards freely -->
+      <div class="card">
+        <img src="img/project-led-stage.jpg" alt="Corporate LED Stage">
+        <div class="badge">Corporate LED Stage</div>
       </div>
-    </section>
+      <div class="card">
+        <img src="img/outdoor-screen.jpg" alt="Outdoor Sports Screen">
+        <div class="badge">Outdoor Sports Screen</div>
+      </div>
+      <div class="card">
+        <img src="img/projection-mapping.jpg" alt="Projection Mapping">
+        <div class="badge">Projection Mapping</div>
+      </div>
+      <div class="card">
+        <img src="img/interactive-booth.jpg" alt="Interactive Photobooth">
+        <div class="badge">Interactive Photobooth</div>
+      </div>
+      <div class="card">
+        <img src="img/rental-led-panels.jpg" alt="Rental LED Panels">
+        <div class="badge">Rental LED Panels</div>
+      </div>
+      <div class="card">
+        <img src="img/truss-rigging.jpg" alt="Truss & Rigging">
+        <div class="badge">Truss & Rigging</div>
+      </div>
+    </div>
   </main>
 
   <footer>
     © Metaflux Technologies, 2025–present. All rights reserved.
   </footer>
 
-  <!-- Floating CTA button (always visible) -->
-  <a class="fab" href="mailto:hello@company.ae">Request a Quote</a>
+  <!-- 3) Single floating CTA kept: Request a Quote -->
+  <a class="fab" href="mailto:hello@company.ae?subject=Request%20a%20Quote%20-%20Metaflux">Request a Quote</a>
 
 </body>
 </html>
